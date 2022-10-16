@@ -1,0 +1,42 @@
+//
+//  ViewController.swift
+//  LayoutProject
+//
+//  Created by Caner on 29.12.2021.
+//
+
+import UIKit
+
+class ViewController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        let width = view.frame.size.width   //hangi telefon var ise onun güncel boyutlarına göre düzgün şekilde konumlandırılmasını sağlar.
+        let height = view.frame.size.height     //hangi telefon/iPad var ise onun güncel boyutlarına göre düzgün şekilde konumlandırılmasını sağlar.
+        
+        //LABEL
+        let myLabel = UILabel()     //ViewController kullanarak foto eklediğimiz kısmı kod ile aynı şekilde bu kısımda yapılır.
+        myLabel.text = "Test Label"     //Label'ımızın gözükecek olan adı
+        myLabel.textAlignment = .center     //metni hizalamak için kullanılır ve NSTextAligment(.center) ile aynı anlamda kullanılıyor
+        myLabel.frame = CGRect(x: width * 0.5 - 50, y: height * 0.2 - 50, width: 100, height: 100)
+        //width ve height numarasına göre yarınısı alıp çıkarırsan metin tam ortalanmış olur.
+        view.addSubview(myLabel)    //Yapmış olduğumuz label'ı view kısmına ekliyoruz
+        
+        //BUTTON
+        let myButton = UIButton()       //ViewController kısmı için Buton eklemesi
+        myButton.setTitle("Butoncuk", for: UIControl.State.normal)
+        myButton.setTitleColor(UIColor.blue, for: UIControl.State.normal)
+        myButton.frame = CGRect(x: width * 0.5 - 100, y: height * 0.4, width: 200, height: 100)
+        view.addSubview(myButton)
+        
+        myButton.addTarget(self, action: #selector(ViewController.benimFonksiyonum), for: UIControl.Event.touchUpInside)    //butonu aktifleştirme
+    }       //burada 'self' kendisi anlamına gelmektedir ve ViewController içinde kullanıldığı için bir nevi kendini kapatma olarak kullanılır.
+
+    @objc func benimFonksiyonum() {     //ama bunu Action kısmında olabilmesi için bu fonksiyonun 'Objective C' ile yazılması gerekiyor. bunun içinde başına '@objc' yapılır.
+        print("Kullanıcı button'a tıkladı.")        //ya da '@IBAction' yazılır.
+    }
+    
+
+}
+
